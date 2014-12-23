@@ -1,0 +1,38 @@
+>> batch_percentEncode('imgs_rs256','imgs_rs256_percentEncoded'); batch_addCross('imgs_rs256_percentEncoded','imgs_rs256_crossed','cross.png');
+...........
+imgs_rs256/bagel/img\gallery\bagel\bagel_plain_jpg.png
+.........       20/200
+....................    40/200
+....................    60/200
+....................    80/200
+....................    100/200
+......
+imgs_rs256/lobster/img\cards\Lobsters-Crayfish_jpg.png
+..............  120/200
+.......
+imgs_rs256/ping-pong_ball/24--1104947-3d%20blue%20rotation%20balls%20background_Eggs,table%20tennis,football,basketball,ball,volleyball,beans,light%20bulbs,Design,pattern,symbol,dream,vision,idea,creativity,vj,beautiful,art,decorative_jpg.png
+............
+imgs_rs256/punching_bag/seoimages\300x300-freestanding-punching-bag-herman-wavemaster-combo_jpg.png
+.       140/200
+...
+imgs_rs256/ray/6--1105692-eye with fiber and blue ray light,god eye,ghost,devil,Satan_Totem,aliens,spacecraft,UFO,Design,pattern,symbol,dream,vision,idea,creativity,vj,beautiful,art,decorative,Monster_jpg.png
+..
+imgs_rs256/refrigerator/thumb_php?w=280&h=200&zc=2&src=http:%2F%2Fhome-design-information_com%2Fwp-content%2Fuploads%2F2013%2F12%2Fdirty-refrigerator-clipartfridge-1-clip-art---vector-clip-art-online-royalty-free-public-6fitho59_png.png
+............... 160/200
+........
+imgs_rs256/stethoscope/3d+gif+animated+free+download+clip+art+stethoscope+for+general+practitioners+and+pediatric+cardiologist+graphics+arts+for+all+doctors+Power+Point+presentations+for+medical+nursing+Conferenc_gif.png
+............    180/200
+.................
+imgs_rs256/watercraft/1--1070771-abstract blue smoke,seamless loop_Silk,aurora,northern lights,snow,avalanches,skiing,storm,Blizzard,Design,pattern,symbol,dream,vision,idea,creativity,vj,beautiful,art,decorative,sky_jpg.png
+...     200/200
+....................    20/200
+....................    40/200
+....................    60/200
+....................    80/200
+....................    100/200
+....................    120/200
+....................    140/200
+....................    160/200
+....................    180/200
+...    .............    200/200
+

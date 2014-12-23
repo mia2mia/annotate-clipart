@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <!-- Enable responsive view on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Enable media queries for old IE -->
+    <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+    <title>Clipart Annotation Tool</title>
+</head>
+
+<body>
+
+    <div class="instructionText topForm">
+        <p>Please label <span class="crucial"><b>good clipart images</b></span> by crossing out bad ones.</p> 
+        <table id="instructionTable">
+            <tr>
+                <th style="width:20%">GUIDELINES</th><th style="width:40%">GOOD</th><th style="width:40%">BAD</th>
+            </tr>
+            <tr>
+                <td>(1) Keep only clipart images (incl. catoon-style ones), computer-made line drawings, </br><em class="emNot">NOT</em> photos, handrawings, paintings.</td>
+                <td>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule1/good1.png" alt="good image"><p class="imgDesc">good</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule1/good2.png" alt="good image"><p class="imgDesc">good</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule1/good3.png" alt="good image"><p class="imgDesc">good</p></div>
+                </td>
+                <td>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule1/bad1_photo.png" alt="photo"><p class="imgDesc">Bad because it's a photo.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule1/bad2_hand1.png" alt="hand drawing"><p class="imgDesc">Bad because it's a hand drawing.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule1/bad2_hand2.png" alt="hand drawing"><p class="imgDesc">Bad because it's a hand drawing.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule1/bad3_painting.png" alt="painting"><p class="imgDesc">Bad because it's a painting.</p></div>
+                </td>
+            </tr>
+            <tr>
+                <td>(2) Only a single, entire object of interest should be in the image, </br><em class="emNot">NOT</em> multiple objects or object parts.</td>
+                <td> 
+                </td>
+                <td>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule2/bad1_multiple.png" alt="multiple objects"><p class="imgDesc">Bad because it contains multiple objects of interest.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule2/bad2_partial.png" alt="partial object"><p class="imgDesc">Bad because doesn't contain an entire tiger.</p></div>
+                </td>
+            </tr>
+            <tr>
+                <td>(3) Object should <em class="emNot">NOT</em> be too small - its bounding box should occupy at least 1/3 area of image.</td>
+                <td> 
+                </td>
+                <td>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule3/bad1_toosmall.png" alt="too small"><p class="imgDesc">Bad because the airplane is too small.</p></div>
+                </td>
+            </tr>
+            <tr>
+                <td>(4) Image can contain shadow, background, text, or other less significant types of things/stuff, but collectively they should <em class="emNot">NOT</em> exceed the size of the object of interest. <br/>Plain or gradient background, even when large, is fine.</td>
+                <td>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule4/good1.png" alt="good image"><p class="imgDesc">Slight background, text, etc. is fine.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule4/good2.png" alt="good image"><p class="imgDesc">Slight background, text, etc. is fine.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule4/good3.png" alt="good image"><p class="imgDesc">Slight background, text, etc. is fine.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule4/good4.png" alt="good image"><p class="imgDesc">Plain or gradient background, even when large, is fine.</p></div>
+                </td>
+                <td>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule4/bad1_other.png" alt="rider on a bike"><p class="imgDesc">Bad bike image because it contains a rider which occupies larger area than the bike.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule4/bad2_bgTooLarge.png" alt="plane over earth"><p class="imgDesc">Bad because the background (earth) is too large.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule4/bad3_bg.png" alt="plane over ground"><p class="imgDesc">Bad because the background (ground and sky) is too large.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule4/bad4.png" alt="shadow"><p class="imgDesc">Bad because the whole image is covered with shadow.</p></div>
+                </td>
+            </tr>
+            <tr>
+                <td>(5) Image should <em class="emNot">NOT</em> be in unnatural orientations.</td>
+                <td> 
+                </td>
+                <td>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule5/bad1.png" alt="unntatural orientation"><p class="imgDesc">Bad because the airplane is in unnatural orientation.</p></div>
+                    <div class="exampleImgWrap"><img class="exampleImg" src="examples/rule5/bad2.png" alt="unntatural orientation"><p class="imgDesc">Bad because the airplane is in unnatural orientation.</p></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>

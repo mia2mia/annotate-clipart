@@ -1,0 +1,245 @@
+/* General stylling */
+        body {
+            background: #EEE;
+            font: 100%/120% 'Lucida Sans',sans-serif;
+        }
+        div#taskBanner {
+            position: relative;
+            margin-right:13px;
+            margin-left:13px;
+        }
+        div#instruction {
+            position: relative;
+            margin-right:13px;
+            margin-left:13px;
+        }
+        p#taskCounter {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 25%;
+            margin: 0px;
+        }
+        p#taskTitle {
+            text-align:center;
+            width: 50%;
+            margin: 0 auto;
+        }
+        div#taskTools {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 25%;
+            margin: 0px;
+        }
+        button#toggleAll {
+            float: right;
+        }
+        button#clear  {
+            float: right;
+            margin-right: 0.5em;
+        }
+        #annotation_submit {
+            width: 10em;  
+            height: 2em;
+            font: 150%/170% 'Lucida Sans',sans-serif;
+        }
+        #instructionToggle {
+            text-decoration: underline;
+            cursor: pointer;
+            color: rgb(0,0,255);
+        }
+        p.jump {
+            text-align: center;
+        }
+        a:link {
+            text-decoration: none;
+        }
+        a:visited {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: none;
+            color: #FF00FF;
+        }
+        a:active {
+            text-decoration: underline;
+        }
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .topForm {
+            margin-top: 3em;
+        }
+        .txtcenter {
+            text-align: center;
+        }
+        .txtjustify {
+            text-align: justify;
+        }
+        .crucial {
+            color: rgb(255,0,100);
+            font-size: 1.5em;
+        }
+        .emNot {
+            color: rgb(255,0,100);
+        }
+        .instructionText {
+            width: 75%;
+            margin: 0 auto;
+        }
+        @media only screen and (max-width : 960px) {
+        .instructionText {
+            width: 95%;
+            margin: 0 auto;
+        }
+        }
+        
+        .exampleImg {
+            width: 100px;
+            height:100px;
+        }
+        
+        .exampleImgWrap {
+            position: relative;
+            float:left;
+            width: 100px;
+            height:100px;
+            margin-right: 5px;
+            margin-bottom: 3px;
+        }
+
+        .imgDesc {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(29, 106, 154, 0.72);
+            color: rgb(255,255,255);
+            font: 80%/90% 'Lucida Sans',sans-serif;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .exampleImgWrap:hover .imgDesc {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        table#instructionTable td:nth-child(2) {
+            background-color: rgb(0,255,0);
+        }
+        
+        table#instructionTable td:nth-child(3) {
+            background-color: rgb(255,0,0);
+        }
+        
+        table#instructionTable td:nth-child(1) {
+            text-align: justify;
+        }
+        
+        #instructionTable td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        #instructionTable th{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        #instructionTable{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+/* Responsive Image Grid */
+    .wrap {
+      overflow: hidden;
+      margin: 10px;
+    }
+    .imgGridBox {
+      float: left;
+      position: relative;
+      width: 10%;
+      padding-bottom: 10%;
+    }
+    .imgGridBox .img {
+      position: absolute;
+      left: 2%;
+      top: 2%;
+      width: 96%;
+    }
+    .imgGridBox .cross {
+      position: absolute;
+      left: 2%;
+      top: 2%;
+      width: 96%;
+      visibility: hidden;
+      opacity: 0;
+    }
+    @media only screen and (max-width : 125px) {
+      /* 1 tile */
+      .imgGridBox {
+        width: 100%;
+        padding-bottom: 100%;
+      }
+    }
+    @media only screen and (max-width : 250px) and (min-width : 126px) {
+      /* 2 tiles */
+      .imgGridBox {
+        width: 50%;
+        padding-bottom: 50%;
+      }
+    }
+    @media only screen and (max-width : 375px) and (min-width : 251px) {
+      /* 3 tiles */
+      .imgGridBox {
+        width: 33.3%;
+        padding-bottom: 33.3%;
+      }
+    }
+    @media only screen and (max-width : 500px) and (min-width : 376px) {
+      /* 4 tiles */
+      .imgGridBox {
+        width: 25%;
+        padding-bottom: 25%;
+      }
+    }
+    @media only screen and (max-width : 625px) and (min-width : 501px) {
+      /* 5 tile */
+      .imgGridBox {
+        width: 20%;
+        padding-bottom: 20%;
+      }
+    }
+    @media only screen and (max-width : 750px) and (min-width : 626px) {
+      /* 6 tiles */
+      .imgGridBox {
+        width: 16.66667%;
+        padding-bottom: 16.66667%;
+      }
+    }
+    @media only screen and (max-width : 875px) and (min-width : 751px) {
+      /* 7 tiles */
+      .imgGridBox {
+        width: 14.2857143%;
+        padding-bottom: 14.2857143%;
+      }
+    }
+    @media only screen and (max-width : 1000px) and (min-width : 876px) {
+      /* 8 tiles */
+      .imgGridBox {
+        width: 12.5%;
+        padding-bottom: 12.5%;
+      }
+    }
+    @media only screen and (max-width : 1125px) and (min-width : 1001px) {
+      /* 9 tiles */
+      .imgGridBox {
+        width: 11.1111%;
+        padding-bottom: 11.1111%;
+      }
+    }
