@@ -137,6 +137,12 @@ if ($up_avg_anno) {
 		$query = $db_connection->prepare($sql);
 		$query->execute();
 		$task_list = $query->fetchAll(PDO::FETCH_ASSOC);
+		
+		// clear existing avg_annotation
+		$sql = 'UPDATE tasks 
+			    SET avg_annotation=NULL;';
+		$query = $db_connection->prepare($sql);
+		$query->execute();
 	}
 	foreach ($task_list as $task) {
 	        echo "<p>Averaging annotations of " . $task['task_category'] . "(#" . $task['task_id'] . ") ...";
