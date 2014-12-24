@@ -340,11 +340,22 @@
         }
         $task_annotation = $default_annotation;
         
-        // preferences 
-        if(isset($_POST['show_instruction']))
+        // whether show instruction
+        if(isset($_POST['show_instruction'])) {
             $show_instruction = intval($_POST['show_instruction']);
-        else
-            $show_instruction = 1;
+        } else {
+            $sql = 'SELECT count(*) AS cnt
+                    FROM annotations 
+                    WHERE user_name=:user_name AND quality IS NOT NULL;';
+            $query = $db_connection->prepare($sql);
+            $query->bindValue(':user_name', $user_name);
+            $query->execute();
+            $result_row = $query->fetchObject();
+            if (intval($result_row->cnt)>3) 
+                $show_instruction = 0;
+            else 
+                $show_instruction = 1;
+        }
 ?>
 
     <div id="taskBanner">
