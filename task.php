@@ -454,6 +454,13 @@
     </div>
 	<!--End Responsive Image Grid-->
     
+    <div id="taskBanner">
+        <div id="taskTools">
+            <button id="toggleAll" type="button">Toggle All</button>
+            <button id="clear" type="button">Clear</button>
+        </div>
+    </div>
+    
     <input type="hidden" id="tmp_vars"  name="tmp_vars" value="" defaultAnnotation="<?php echo $default_annotation?>" annotation="<?php echo $task_annotation; ?>">
     
     <form method="post" action="task.php" name="annotationform">
