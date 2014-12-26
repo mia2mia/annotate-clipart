@@ -257,10 +257,15 @@
                     FROM tasks T 
                     WHERE T.is_active IS NOT 0
                         AND NOT EXISTS (
-                        SELECT * FROM annotations A 
-                        WHERE A.user_name=:user_name 
-                            AND A.task_id=T.task_id 
-                            AND A.task_category=T.task_category
+                            SELECT * FROM annotations A 
+                            WHERE A.user_name=:user_name 
+                                AND A.task_id=T.task_id 
+                                AND A.task_category=T.task_category
+                        ) 
+                        AND NOT EXISTS (
+                            SELECT * FROM annotations A2 
+                            WHERE A2.task_category=T.task_category 
+                                AND A2.quality IS NULL
                         )
                     ORDER BY T.num_annotations ASC
                     LIMIT 1;';
