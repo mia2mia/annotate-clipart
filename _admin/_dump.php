@@ -15,18 +15,7 @@
     <title>Clipart Annotation Tool</title>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <style>
-        table, td, th {
-            border: 1px solid black;
-            border-collapse: collapse;
-            text-align: center;
-        }
 
-        th {
-            background-color: black;
-            color: white;
-        }
-    </style>
 </head>
 
 <body>

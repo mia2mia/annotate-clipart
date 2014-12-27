@@ -69,7 +69,7 @@ if (intval($cnt)>0) {
 
 /* info 1: users */
 
-$sql = "SELECT user_name,is_admin, datetime(last_login_time,'unixepoch','localtime') AS last_login,count(time_start) AS num_tasks,sum(duration) AS total_time_spent,avg(quality) AS avg_quality
+$sql = "SELECT user_name,is_admin, datetime(last_login_time,'unixepoch','localtime') AS last_login,count(time_submit) AS num_tasks,sum(duration) AS total_time_spent,avg(quality) AS avg_quality
         FROM users left outer join annotations using (user_name) 
         GROUP BY user_name
         ORDER BY num_tasks DESC, avg_quality DESC, user_name ASC;

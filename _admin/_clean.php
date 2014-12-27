@@ -14,18 +14,6 @@
     <title>Clipart Annotation Tool</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <style>
-        table, td, th {
-            border: 1px solid black;
-	        border-collapse: collapse;
-	        text-align: center;
-        }
-
-        th {
-	        background-color: black;
-            color: white;
-        }
-    </style>
 </head>
 
 <body>
@@ -90,7 +78,7 @@ if ($rm_stale) {
 	$sql = "SELECT count(*) AS cnt
 		    FROM annotations 
 		    WHERE quality IS NULL
-		    AND time_start<strftime('%s')-:timeout;";
+		    AND time_submit<strftime('%s')-:timeout;";
 
 	// execute the above query
 	$query = $db_connection->prepare($sql);
@@ -101,7 +89,7 @@ if ($rm_stale) {
 
 	$sql = "DELETE FROM annotations 
 		    WHERE quality IS NULL
-		    AND time_start<strftime('%s')-:timeout;";
+		    AND time_submit<strftime('%s')-:timeout;";
 
 	// execute the above query
 	$query = $db_connection->prepare($sql);

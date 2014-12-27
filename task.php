@@ -161,14 +161,14 @@
             $result_row = $query->fetchObject();
                           
             // TODO use transaction here? 
-            $sql = 'INSERT INTO annotations (task_id, task_category, user_name, task_annotation, time_start, duration, quality) 
-                    VALUES (:task_id, :task_category, :user_name, :task_annotation, :time_start, :duration, :quality);';
+            $sql = 'INSERT INTO annotations (task_id, task_category, user_name, task_annotation, time_submit, duration, quality) 
+                    VALUES (:task_id, :task_category, :user_name, :task_annotation, :time_submit, :duration, :quality);';
             $query = $db_connection->prepare($sql);
             $query->bindValue(':task_id', $prev_task_id, PDO::PARAM_INT);
             $query->bindValue(':task_category', $task_category);
             $query->bindValue(':user_name', $prev_user_name);
             $query->bindValue(':task_annotation', $prev_annotation);
-            $query->bindValue(':time_start', $prev_time_start, PDO::PARAM_INT);
+            $query->bindValue(':time_submit', $time_start, PDO::PARAM_INT);
             $query->bindValue(':duration', $time_start-$prev_time_start, PDO::PARAM_INT);
             $query->bindValue(':quality', strval($prev_quality));
             $query->execute();
@@ -310,13 +310,13 @@
         }
         
         // reserve task
-        $sql = 'INSERT INTO annotations (task_id, task_category, user_name, time_start) 
-                VALUES (:task_id, :task_category, :user_name, :time_start);';
+        $sql = 'INSERT INTO annotations (task_id, task_category, user_name, time_submit) 
+                VALUES (:task_id, :task_category, :user_name, :time_submit);';
         $query = $db_connection->prepare($sql);
         $query->bindValue(':task_id', $task_id, PDO::PARAM_INT);
         $query->bindValue(':task_category', $task_category);
         $query->bindValue(':user_name', $user_name);
-        $query->bindValue(':time_start', $time_start, PDO::PARAM_INT);
+        $query->bindValue(':time_submit', $time_start, PDO::PARAM_INT);
         $query->execute();
         $sql = 'UPDATE tasks
                 SET num_annotations=num_annotations+1

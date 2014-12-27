@@ -15,18 +15,7 @@
     <title>Clipart Annotation Tool</title>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <style>
-        table, td, th {
-            border: 1px solid black;
-            border-collapse: collapse;
-            text-align: center;
-        }
 
-        th {
-            background-color: black;
-            color: white;
-        }
-    </style>
 </head>
 
 <body>
@@ -76,7 +65,7 @@ $sql = 'CREATE TABLE IF NOT EXISTS `annotations` (
         `task_category`         VARCHAR(64),
         `user_name`             VARCHAR(64),
         `task_annotation`       VARCHAR(255),
-        `time_start`            INTEGER,
+        `time_submit`           INTEGER,
         `duration`              INTEGER, 
         `quality`               REAL,
         PRIMARY KEY (`task_id`,`task_category`,`user_name`) ON CONFLICT REPLACE);
