@@ -88,10 +88,10 @@ foreach($results as $user) {
         $is_admin = "NO";
     }
     echo "<tr>";
-    echo    "<td><a href=../review.php?user_name=" . urlencode($user['user_name']) . ">" . $user['user_name'] . "</a></td>" . 
+    echo    "<td>" . $user['user_name'] . "</td>" . 
             "<td>" . $is_admin . "</td>" . 
             "<td>" . $user['last_login'] . " ET" . "</td>" . 
-            "<td>" . $user['num_tasks'] . "</td>" . 
+            "<td><a href=../review.php?user_name=" . urlencode($user['user_name']) . ">" . $user['num_tasks'] . "</a></td>" . 
             "<td>" . sprintf('%.2f',intval($user['total_time_spent'])/60) . ' minutes' . "</td>" . 
             "<td>" . sprintf('%.1f',100*floatval($user['avg_quality'])) . '%' . "</td>";
             
