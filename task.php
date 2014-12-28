@@ -137,8 +137,12 @@
         
         /* status banner */
         echo '<div class="topMessage"> <a href="index.php">Home</a> | ';
-        if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']===1) 
+        if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']===1) {
             echo '<a href="_admin/_status.php">Admin</a> | ';
+            echo '<a href="review.php">Review</a> | ';
+        } else {
+            echo '<a href="review.php?user_name=' . urlencode($user_name) . '">Review</a> | ';
+        }
         echo 'Logged in as: ' . $user_name . ' <a href="index.php?action=logout">Log out</a> </div><hr/><br/><br/>';
         
         /* Annotations from last task */

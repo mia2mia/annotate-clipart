@@ -9,6 +9,35 @@ function countOnes($annoArray) {
 	return $cnt;
 }
 
+function annotationDecode($annotation) {
+    $str_g = strstr($annotation,'g');
+    $str_b = strstr($annotation,'b');
+    $str_2 = (strlen($str_g)>=strlen($str_b)) ? $str_g : $str_b;
+    $str_0 = substr($annotation,0,strlen($annotation)-strlen($str_2));
+    $str_1 = "";
+    $str_3 = "";
+    for($i=0;$i<strlen($str_0);$i++) {
+        switch($str_0[$i]) {
+            case '0': 
+                $str_1 = $str_1 . 'b';
+                $str_3 = $str_3 . 'b';
+                break;
+            case '1': 
+                $str_1 = $str_1 . 'g';
+                $str_3 = $str_3 . 'b';
+                break;
+            case '2': 
+                $str_1 = $str_1 . 'g';
+                $str_3 = $str_3 . 'g';
+                break;
+            default: 
+                echo "Wrong format!";   
+                return "";             
+        }
+    }
+    return $str_1 . $str_2 . $str_3;
+}
+
 function buildRedirectStr() {
 	$result = "?";
 	foreach($_GET as $param => $val) {
