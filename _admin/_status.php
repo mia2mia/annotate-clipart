@@ -88,7 +88,7 @@ foreach($results as $user) {
         $is_admin = "NO";
     }
     echo "<tr>";
-    echo    "<td>" . $user['user_name'] . "</td>" . 
+    echo    "<td><a href=../review.php?user_name=" . urlencode($user['user_name']) . ">" . $user['user_name'] . "</a></td>" . 
             "<td>" . $is_admin . "</td>" . 
             "<td>" . $user['last_login'] . " ET" . "</td>" . 
             "<td>" . $user['num_tasks'] . "</td>" . 
