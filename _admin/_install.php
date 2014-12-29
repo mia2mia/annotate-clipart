@@ -92,35 +92,26 @@ $query = $db_connection->prepare($sql);
 $query->execute();
 
 // add tasks
-$sql = 'SELECT * FROM tasks 
-        LIMIT 1;';
-$query = $db_connection->prepare($sql);
-$query->execute();
-$result_row = $query->fetchObject();
-if ($result_row) {
-    echo '<p>tasks already exists.</p>'; 
-} else {
-    $files_tasks = array_diff(scandir($task_dir),array('..','.'));
-    foreach ($files_tasks as $task_name) {
-        $task_name = trim($task_name);
-        if(!is_file($task_dir . "/" . $task_name)) {
-            continue;
-        }
-        $sepLoc = strrpos($task_name,'-');
-        $task_category = substr($task_name,0,$sepLoc);
-        $task_id = intval(substr($task_name,$sepLoc+1));
-        $is_active = 1;
-        $num_annotations = 0;
-        
-        $sql = 'INSERT INTO tasks (task_category, task_id, is_active, num_annotations) 
-                VALUES (:task_category, :task_id, :is_active, :num_annotations);';
-        $query = $db_connection->prepare($sql);
-        $query->bindValue(':task_id', $task_id, PDO::PARAM_INT);
-        $query->bindValue(':task_category', $task_category);
-        $query->bindValue(':is_active', $is_active, PDO::PARAM_INT);
-        $query->bindValue(':num_annotations', $num_annotations, PDO::PARAM_INT);
-        $query->execute();
+$files_tasks = array_diff(scandir($task_dir),array('..','.'));
+foreach ($files_tasks as $task_name) {
+    $task_name = trim($task_name);
+    if(!is_file($task_dir . "/" . $task_name)) {
+        continue;
     }
+    $sepLoc = strrpos($task_name,'-');
+    $task_category = substr($task_name,0,$sepLoc);
+    $task_id = intval(substr($task_name,$sepLoc+1));
+    $is_active = 1;
+    $num_annotations = 0;
+    
+    $sql = 'INSERT OR IGNORE INTO tasks (task_category, task_id, is_active, num_annotations) 
+            VALUES (:task_category, :task_id, :is_active, :num_annotations);';
+    $query = $db_connection->prepare($sql);
+    $query->bindValue(':task_id', $task_id, PDO::PARAM_INT);
+    $query->bindValue(':task_category', $task_category);
+    $query->bindValue(':is_active', $is_active, PDO::PARAM_INT);
+    $query->bindValue(':num_annotations', $num_annotations, PDO::PARAM_INT);
+    $query->execute();
 }
         
 /* check for success */
