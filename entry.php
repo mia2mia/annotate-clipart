@@ -70,6 +70,7 @@
                             <option value="3" >3</option>
                             <option value="5" selected>5</option>
 							<option value="10" >10</option>
+							<option value="20" >20</option>
 				    </select>
             </td></tr>
             <tr><td><div class="txtcenter"><input type="submit" name="start" value="Start" /></div></td></tr>
