@@ -100,7 +100,7 @@ foreach($results as $user) {
 echo "</table>";
 
 /* info 2: tasks */
-$sql = "SELECT task_category, count(is_active) AS num_active, count(DISTINCT task_id) AS num_tasks, avg(num_annotations) AS progress
+$sql = "SELECT task_category, sum(is_active) AS num_active, count(DISTINCT task_id) AS num_tasks, avg(num_annotations) AS progress
         FROM tasks 
         GROUP BY task_category
         ORDER BY progress DESC, task_category ASC;";
