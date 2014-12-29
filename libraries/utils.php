@@ -114,9 +114,9 @@ function get_images_by_category($db_sqlite_path, $task_dir, $task_category, $enc
 			if($img_path) {
 				if ($task['avg_annotation'][$idx]=='1') {
 					if ($encodePercent)
-						$img_list[] = str_replace('%','%25',$img_path);
+						$img_list[str_replace('%','%25',$img_path)] = $task['task_id'];
 					else 
-						$img_list[] = $img_path;
+						$img_list[$img_path] = $task['task_id'];
 				}
 				$idx += 1;
 			}

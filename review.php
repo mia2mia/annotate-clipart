@@ -135,16 +135,21 @@
         echo 'Logged in as: ' . $user_name . ' <a href="index.php?action=logout">Log out</a> </div><hr/><br/><br/>';
               
         // entrance 1: nothing specified
-        if (!isset($_GET['user_name'])  && !isset($_GET['task_category']) && !isset($_GET['task_id'])) {
+        if (!isset($_GET['user_name'])  && !(isset($_GET['task_category']) && isset($_GET['task_id']))) {
             if ($is_admin) {
                 $sql = "SELECT user_name
                         FROM users;";
                 $query = $db_connection->prepare($sql);
                 $query->execute();
                 $results = $query->fetchAll(PDO::FETCH_COLUMN,0);
-                foreach($results as $user) {
-                    echo    '<a href="review.php?user_name=' . urlencode($user) . '">' . $user . '<br />';
-                } 
+                echo "<table>";
+                echo "<tr><th>user_name</th></tr>";
+                foreach ($results as $user) {
+                    echo "<tr><td>";
+                    echo '<a href="review.php?user_name=' . urlencode($user) . '">' . $user . '</a>';
+                    echo "</td></tr>";
+                }
+                echo "</table>";
                 die();
             } else {
                 echo '<p>No task specified. Please <a href="review.php?user_name=' . urlencode($user_name) . '">choose a task</a>.</p>';
@@ -152,7 +157,7 @@
             }
         }
         
-        // entrace 2: user_name only
+        // entrance 2: user_name only
         if (isset($_GET['user_name']) && !(isset($_GET['task_category']) && isset($_GET['task_id']))) {
             if ($is_admin || ($_GET['user_name']==$user_name)) {
                 $sql = "SELECT task_category, task_id 
@@ -173,7 +178,7 @@
                     while($i==$first_idx || ($i<count($results) && $results[$i]['task_category'] == $results[$i-1]['task_category'])) {
                         echo '<a href="review.php?user_name=' . urlencode($_GET['user_name']) 
                         . '&task_category='  . urlencode($results[$i]['task_category']) 
-                        . '&task_id=' . urlencode($results[$i]['task_id']) . '">' . strval($results[$i]['task_id']) . " ";
+                        . '&task_id=' . urlencode($results[$i]['task_id']) . '">' . strval($results[$i]['task_id']) . '</a> ';
                         $i++;
                     }
                     echo "</td>";
@@ -187,7 +192,38 @@
             }
         }
         
-        // entrace 3: user_name, task_category, task_id provided
+        // entrance 3: task_category, task_id provided
+        if (!isset($_GET['user_name']) && (isset($_GET['task_category']) && isset($_GET['task_id']))) {
+            if ($is_admin) {
+                $sql = "SELECT user_name
+                        FROM annotations 
+                        WHERE task_category=:task_category AND task_id=:task_id 
+                            AND quality IS NOT NULL;";
+                $query = $db_connection->prepare($sql);
+                $query->bindValue(':task_category', $_GET['task_category']);
+                $query->bindValue(':task_id', $_GET['task_id']);
+                $query->execute();
+                $results = $query->fetchAll(PDO::FETCH_COLUMN,0);
+                echo "<table>";
+                echo "<tr><th>user_name</th></tr>";
+                foreach ($results as $user) {
+                    echo "<tr><td>";
+                    echo '<a class="userSelector" href="review.php?user_name=' . urlencode($user) 
+                        . '&task_category='  . urlencode($_GET['task_category']) 
+                        . '&task_id=' . urlencode($_GET['task_id']) . '">' . $user . '</a>';
+                    echo "</td></tr>";
+                }
+                echo "</table>";
+                if (count($results)==1) 
+                    echo "<script>var href = $('.userSelector').attr('href');window.location.href = href;</script>";
+                die();
+            } else {
+                echo '<p>Permission denied! Please <a href="index.php?action=logout&redirect=' . buildRedirectStr() . '">log in</a> as an admin user or contact <a href="mailto:hsu@cs.umass.edu">hsu</a> to request access.</p>';
+                die();
+            }
+        }
+        
+        // entrance 4: user_name, task_category, task_id provided
         
         // from GET
         $task_user          = $_GET['user_name'];

@@ -55,7 +55,7 @@
         
         if(isset($_GET['resultType']) && $_GET['resultType']=='text') {
             $img_list_raw = get_images_by_category($db_sqlite_path, $task_dir, $category,0);
-            foreach($img_list_raw as $img) {
+            foreach($img_list_raw as $img=>$task_id) {
                 echo $img . '<br/>';
             }
         } else {
@@ -63,10 +63,11 @@
             
             //Responsive Image Grid-->
             echo '<div class="wrap">';
-            for($idx=0;$idx<count($img_list);$idx++)
+            foreach($img_list as $img_path=>$task_id) {
                 echo '<div class="imgGridBox">
-                        <img class="img" src="' . $img_dir . '/' . $img_list[$idx] . '" alt="' . $img_dir . '/' . $img_list[$idx] . '" />
+                        <a href="review.php?task_category=' . urlencode($category) . '&task_id=' . urlencode(strval($task_id)) . '"><img class="img" src="' . $img_dir . '/' . $img_path . '" alt="' . $img_dir . '/' . $img_path . '" /></a>
                       </div>';
+            }
             echo '</div>';
 	        //End Responsive Image Grid-->
         }   
