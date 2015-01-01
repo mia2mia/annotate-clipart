@@ -121,7 +121,7 @@ foreach($results as $category) {
     $annoArray = $query->fetchAll(PDO::FETCH_COLUMN, 0);
     echo "<tr>";
     echo    "<td>" . $category['task_category'] . "</td>" . 
-            "<td>" . $category['num_tasks'] . " (" . $category['num_active'] . ")" . "</td>" . 
+            "<td>" . $category['num_tasks'] . " (" . $category['num_active'] . ")" . " <a href='_clean.php?disable_category=" . $category['task_category'] . "'>disable</a> | <a href='_clean.php?enable_category=" . $category['task_category'] . "'>enable</a> </td>" . 
             "<td><a href='../showGood.php?category=" . $category['task_category'] . "'>" . strval(countOnes($annoArray)) . "</a></td>" .
             "<td>" . sprintf('%.1f',100*floatval($category['progress'])) . '%' . "</td>";
             

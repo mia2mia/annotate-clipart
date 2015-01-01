@@ -53,7 +53,15 @@ if (isset($_GET['up_avg_anno'])) {
 	$up_avg_anno = 0; 
 }
 
-if (!$rm_stale && !$up_avg_anno) {
+if (isset($_GET['disable_category'])) {
+	$disable_category = strval($_GET['disable_category']); 
+}
+
+if (isset($_GET['enable_category'])) {
+	$enable_category = strval($_GET['enable_category']); 
+}
+
+if (!$rm_stale && !$up_avg_anno && empty($disable_category) && empty($enable_category)) {
     echo '<form action="_clean.php">
         <input type="checkbox" name="rm_stale" value="1">rm_stale 
         (timeout=<input type="text" name="timeout" value="180" size="4"> seconds)
@@ -63,17 +71,42 @@ if (!$rm_stale && !$up_avg_anno) {
         <input type="submit" value="clean">
         </form> 
     ';
+    die();
+}
+
+$db_type = "sqlite";
+$db_sqlite_path = "../data.db";
+
+// create new connection
+$db_connection = new PDO($db_type . ':' . $db_sqlite_path);
+	
+if(!empty($disable_category)) {
+    $sql = "UPDATE tasks 
+            SET is_active=0 
+            WHERE task_category=:task_category;";
+	// execute the above query
+	$query = $db_connection->prepare($sql);
+	$query->bindValue(':task_category', $disable_category);
+	$query->execute();
+	
+	echo "<p>done! (" . $disable_category . " disabled)</p>";
+}
+
+if(!empty($enable_category)) {
+    $sql = "UPDATE tasks 
+            SET is_active=1 
+            WHERE task_category=:task_category;";
+	// execute the above query
+	$query = $db_connection->prepare($sql);
+	$query->bindValue(':task_category', $enable_category);
+	$query->execute();
+	
+	echo "<p>done! (" . $enable_category . " enabled)</p>";
 }
 
 if ($rm_stale) { 
 
 	echo "<p>Removing stale sessions more than " . strval($timeout) . " seconds old ...</p>";
-
-	$db_type = "sqlite";
-	$db_sqlite_path = "../data.db";
-
-	// create new connection
-	$db_connection = new PDO($db_type . ':' . $db_sqlite_path);
 
 	$sql = "SELECT count(*) AS cnt
 		    FROM annotations 
@@ -111,11 +144,6 @@ if ($rm_stale) {
 }
 
 if ($up_avg_anno) {
-	$db_type = "sqlite";
-	$db_sqlite_path = "../data.db";
-
-	// create new connection
-	$db_connection = new PDO($db_type . ':' . $db_sqlite_path);
 
 	if (isset($_GET['task_category']) && isset($_GET['task_id'])) {
 		$task_list = array(array("task_category" => $_GET['task_category'], "task_id" => $_GET['task_id']));
